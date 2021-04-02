@@ -1,4 +1,3 @@
-require 'byebug'
 # プレイヤー(自分)に「0 ~ 2」を入力させるロジックを書きます。
 class Player
   def hand
@@ -7,14 +6,14 @@ class Player
       puts "数字を入力してください。"
       puts "0:グー, 1:チョキ, 2:パー"
       # 変数「input_hand」にプレイヤーが入力したものを取得して代入します。
-      @player_hand= player_hand = gets.to_i # input_hand
+      @player_hand= player_hand = gets.chomp # input_hand
       # 「input_hand」(取得した値)が「0, 1, 2」のいずれかだとwhileから脱出させ、それ以外だと初めから繰り返させます。
       # if 条件を書く (「input_hand」(取得した値)が「0, 1, 2」のいずれかの場合だった場合)
-      unless player_hand == 0 || player_hand == 1 || player_hand == 2
+      unless player_hand == "0" || player_hand == "1" || player_hand == "2"
         puts "もう一度数字を入力してください。"
         # 「input_hand」(取得した値)をそのまま返します。
       else
-        return player_hand
+        return player_hand.to_i
       end
     end
   end
@@ -29,7 +28,6 @@ end
 # プレイヤー(自分)が入力した「0 ~ 2」と、敵がランダムで生成した「0 ~ 2」をじゃんけんをさせて、その結果をコンソール上に出力するロジックを書きます。
 class Janken
   def pon(player_hand, enemy_hand)
-byebug
     # 変数「janken」に["グー", "チョキ", "パー"]を代入します。
     janken = ["グー", "チョキ", "パー"]
     #「相手の手は#{敵の生成した値}です。」と出力させます。
